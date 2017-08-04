@@ -4,7 +4,6 @@
   <artifactId>spring-boot-demo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  
   <parent>
        <groupId>org.springframework.boot</groupId>
        <artifactId>spring-boot-starter-parent</artifactId>
@@ -15,14 +14,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+         
+        <!--Redis  需要在mysql-connector-java前-->
+		 <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency> 
+          <!--DB -->
         <dependency>  
 			<groupId>org.springframework.boot</groupId>  
 			<artifactId>spring-boot-starter-data-jpa</artifactId>  
-		</dependency>  
+		</dependency> 
 		<dependency>  
 			<groupId>mysql</groupId>  
 			<artifactId>mysql-connector-java</artifactId>  
-		</dependency>  
+		</dependency>
+		
     </dependencies>
 
     <build>

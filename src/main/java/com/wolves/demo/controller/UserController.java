@@ -17,16 +17,14 @@ public class UserController {
     private UserInfoDao userRepositoy;  
       
     @RequestMapping("getuser")  
-    public Object getUser(int id)  
-    {  
+    public Object getUser(int id) {  
         UserInfo userEntity = userRepositoy.findUserInfoById(id);  
         ResultMsg resultMsg = new ResultMsg(ResultStatusCode.OK.getErrorCode(), ResultStatusCode.OK.getErrorMsg(), userEntity);  
         return resultMsg;  
     }  
       
     @RequestMapping("getusers")  
-    public Object getUsers(String role)  
-    {  
+    public Object getUsers(String role) {  
         List<UserInfo> userEntities = userRepositoy.findUserInfoByRole(role);  
         ResultMsg resultMsg = new ResultMsg(ResultStatusCode.OK.getErrorCode(), ResultStatusCode.OK.getErrorMsg(), userEntities);  
         return resultMsg;  
@@ -34,8 +32,7 @@ public class UserController {
       
     @Modifying  
     @RequestMapping("adduser")  
-    public Object addUser(@RequestBody UserInfo userEntity)  
-    {  
+    public Object addUser(@RequestBody UserInfo userEntity) {  
         userRepositoy.save(userEntity);  
         ResultMsg resultMsg = new ResultMsg(ResultStatusCode.OK.getErrorCode(), ResultStatusCode.OK.getErrorMsg(), userEntity);  
         return resultMsg;  
@@ -43,24 +40,21 @@ public class UserController {
       
     @Modifying  
     @RequestMapping("updateuser")  
-    public Object updateUser(@RequestBody UserInfo userEntity)  
-    {  
+    public Object updateUser(@RequestBody UserInfo userEntity) {  
         UserInfo user = userRepositoy.findUserInfoById(userEntity.getId());  
-        if (user != null)  
-        {  
+        if (user != null) {  
             user.setName(userEntity.getName());  
             userRepositoy.save(user);  
         }  
-        ResultMsg resultMsg = new ResultMsg(ResultStatusCode.OK.getErrorCode(), ResultStatusCode.OK.getErrorMsg(), null);  
+        ResultMsg resultMsg = new ResultMsg(ResultStatusCode.OK.getErrorCode(), ResultStatusCode.OK.getErrorMsg(), userEntity);  
         return resultMsg;  
     }  
       
     @Modifying  
     @RequestMapping("deleteuser")  
-    public Object deleteUser(int id)  
-    {  
+    public Object deleteUser(int id) {  
         userRepositoy.delete(id);  
-        ResultMsg resultMsg = new ResultMsg(ResultStatusCode.OK.getErrorCode(), ResultStatusCode.OK.getErrorMsg(), null);  
+        ResultMsg resultMsg = new ResultMsg(ResultStatusCode.OK.getErrorCode(), ResultStatusCode.OK.getErrorMsg(), new UserInfo());  
         return resultMsg;  
     }  
 }  
